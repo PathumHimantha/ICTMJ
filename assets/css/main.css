@@ -935,3 +935,57 @@ section,
 .contact .php-email-form button[type="submit"]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
+
+
+/* register */
+/* Registration Form Styles */
+
+.log {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    min-height: 100vh;
+}
+
+.form-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(220, 53, 69, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.form-control {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    color: #ffffff;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%);
+    border: none;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #bb2d3b 0%, #8b1a24 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
+}
+
+.text-danger-link {
+    color: #dc3545;
+    transition: color 0.3s ease;
+}
+
+.text-danger-link:hover {
+    color: #ff4d5a;
+}
