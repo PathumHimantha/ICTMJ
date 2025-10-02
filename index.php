@@ -19,13 +19,19 @@
         </div>
 
         <!-- CTA -->
-        <div class="col-lg-5 hero-newsletter mt-4">
+         <div class="col-lg-5 hero-newsletter mt-4">
           <p>Get started with us today!</p>
-          <div class="newsletter-form">
-            <input type="email" name="email" />
-            <input type="submit" value="Register / Login" />
-          </div>
-        </div>
+        
+        
+               <form action="check_email.php" method="POST" class="newsletter-form">
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <input type="submit" value="Register / Login" />
+        </form>
+         
+        </div> 
+
+   
+
 
         <!-- Social Links -->
         <div class="social-links mt-4">

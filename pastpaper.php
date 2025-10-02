@@ -63,7 +63,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-file-earmark-pdf-fill text-danger fs-1 me-3"></i>
                                 <div>
-                                    <h5 class=" mb-1">ICT 2024 - Paper I</h5>
+                                    <h5 class="text-dark mb-1 fw-bold">ICT 2024 - Paper I</h5>
                                     <span class="badge bg-danger">O/L</span>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-file-earmark-pdf-fill text-danger fs-1 me-3"></i>
                                 <div>
-                                    <h5 class=" mb-1">ICT 2024 - Paper II</h5>
+                                 <h5 class="text-dark mb-1"><strong>ICT 2024 - Paper II</strong></h5>
                                     <span class="badge bg-danger">O/L</span>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-file-earmark-pdf-fill text-danger fs-1 me-3"></i>
                                 <div>
-                                    <h5 class=" mb-1">ICT 2023 - Paper I</h5>
+                                    <h5 class="text-dark mb-1 fw-bold">ICT 2023 - Paper I</h5>
                                     <span class="badge bg-danger">O/L</span>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-file-earmark-pdf-fill text-danger fs-1 me-3"></i>
                                 <div>
-                                    <h5 class=" mb-1">ICT 2023 - Paper II</h5>
+                                    <h5 class="text-dark mb-1 fw-bold">ICT 2023 - Paper II</h5>
                                     <span class="badge bg-danger">O/L</span>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-file-earmark-pdf-fill text-danger fs-1 me-3"></i>
                                 <div>
-                                    <h5 class="mb-1">ICT 2022 - Paper I</h5>
+                                    <h5 class="text-dark mb-1 fw-bold">ICT 2022 - Paper I</h5>
                                     <span class="badge bg-danger">O/L</span>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-file-earmark-pdf-fill text-danger fs-1 me-3"></i>
                                 <div>
-                                    <h5 class=" mb-1">ICT 2022 - Paper II</h5>
+                                    <h5 class=" text-dark mb-1 fw-bold">ICT 2022 - Paper II</h5>
                                     <span class="badge bg-danger">O/L</span>
                                 </div>
                             </div>

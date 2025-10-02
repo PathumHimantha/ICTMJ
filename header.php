@@ -38,7 +38,7 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="index.php" class="active">Home</a></li>
             <li class="dropdown">
               <a href="#"><span>Resources</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul class="bg-black">
@@ -47,8 +47,8 @@
                 <li><a href="videopage">Videos</a></li>
               </ul>
             </li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.php#about">About</a></li>
+            <li><a href="index.php#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
