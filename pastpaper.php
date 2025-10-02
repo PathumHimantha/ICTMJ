@@ -1,3 +1,4 @@
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,56 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Past Papers - ICTMJ</title>
   
-    <!-- Your local files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  
 </head>
 <body>
  
 
     <!-- Past Papers Section -->
-    <section class="pastpapers-section py-5 ">
+        <main class="pastpapers-section py-5" style="position: relative; z-index: 1; padding-top: 150px;">
         <div class="container">
-            <!-- Page Title -->
-            <div class="text-center mb-5">
-                <h2 class=" display-4 fw-bold">Past Papers</h2>
-                <p class="">Download ICT past papers and marking schemes</p>
-            </div>
+       
+    <!-- Page Title -->
+    <div class="text-center mb-5">
+        <h2 class="text-white display-4 fw-bold">Past Papers</h2>
+        <p class="text-white">Download ICT past papers and marking schemes</p>
+    </div>
 
-            <!-- Filter Section -->
-            <div class="row mb-4">
-                <div class="col-md-8 mx-auto">
-                    <div class="card filter-card shadow">
-                        <div class="card-body p-4">
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <select class="form-control">
-                                        <option>Select Year</option>
-                                        <option>2024</option>
-                                        <option>2023</option>
-                                        <option>2022</option>
-                                        <option>2021</option>
-                                        <option>2020</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <select class="form-control">
-                                        <option>Select Level</option>
-                                        <option>O/L</option>
-                                        <option>A/L</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-danger w-100">
-                                        <i class="bi bi-search me-2"></i>Search
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+          <!-- Filter Section -->
+<div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+        <div class="card filter-card shadow" style="background: #ffffff3d; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="card-body p-4">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select class="form-control">
+                            <option>Select Year</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control">
+                            <option>Select Level</option>
+                            <option>O/L</option>
+                            <option>A/L</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-danger w-100">
+                            <i class="bi bi-search me-2"></i>Search
+                        </button>
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
+</div>
             <!-- Papers Grid -->
             <div class="row g-4">
                 <!-- Paper Card 1 -->
@@ -202,9 +201,10 @@
                 </div>
             </div>
         </div>
-    </section>
+</main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php include 'footer.php'; ?>
