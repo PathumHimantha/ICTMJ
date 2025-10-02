@@ -1,22 +1,17 @@
+ <?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videos - ICTMJ</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Your local files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link href="assets/styles.css" rel="stylesheet" />
+
+
 </head>
 <body>
    
+   
     <!-- Videos Section -->
-    <section class="videos-section py-5">
+    <main class="videos-section py-5" style="position: relative; z-index: 1; padding-top: 150px;">
         <div class="container">
             <!-- Page Title -->
             <div class="text-center mb-5">
@@ -27,7 +22,7 @@
             <!-- Filter Section -->
             <div class="row mb-4">
                 <div class="col-md-8 mx-auto">
-                    <div class="card filter-card shadow">
+                    <div class="card filter-card shadow" style="background: #ffffff3d; border: 1px solid rgba(255, 255, 255, 0.2);">
                         <div class="card-body p-4">
                             <div class="row g-3">
                                 <div class="col-md-4">
@@ -62,7 +57,7 @@
             <!-- Videos Grid -->
             <div class="row g-4">
                 <!-- Video Card 1 -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card video-card shadow-lg h-100">
                         <div class="video-thumbnail">
                             <img src="assets/img/bg.jpg" class="card-img-top" alt="Video Thumbnail">
@@ -76,7 +71,7 @@
                                 <i class="bi bi-camera-video-fill text-danger me-2"></i>
                                 <span class="badge bg-danger">Programming</span>
                             </div>
-                            <h5 class="mb-2">Introduction to Python</h5>
+                            <h5 class="mb-2 text-dark fw-bold">Introduction to Python</h5>
                             <p class="mb-3">Learn the basics of Python programming language</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small><i class="bi bi-eye me-1"></i>1.2K views</small>
@@ -89,7 +84,7 @@
                 </div>
 
                 <!-- Video Card 2 -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card video-card shadow-lg h-100">
                         <div class="video-thumbnail">
                             <img src="assets/img/bg.jpg" class="card-img-top" alt="Video Thumbnail">
@@ -103,7 +98,7 @@
                                 <i class="bi bi-camera-video-fill text-danger me-2"></i>
                                 <span class="badge bg-danger">Databases</span>
                             </div>
-                            <h5 class="mb-2">SQL Fundamentals</h5>
+                            <h5 class="mb-2 text-dark fw-bold">SQL Fundamentals</h5>
                             <p class="mb-3">Master SQL queries and database management</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small><i class="bi bi-eye me-1"></i>856 views</small>
@@ -116,7 +111,7 @@
                 </div>
 
                 <!-- Video Card 3 -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card video-card shadow-lg h-100">
                         <div class="video-thumbnail">
                             <img src="assets/img/bg.jpg" class="card-img-top" alt="Video Thumbnail">
@@ -130,7 +125,7 @@
                                 <i class="bi bi-camera-video-fill text-danger me-2"></i>
                                 <span class="badge bg-danger">Networks</span>
                             </div>
-                            <h5 class="mb-2">Network Protocols</h5>
+                            <h5 class="mb-2 text-dark fw-bold">Network Protocols</h5>
                             <p class="mb-3">Understanding TCP/IP and network communication</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small><i class="bi bi-eye me-1"></i>943 views</small>
@@ -143,7 +138,7 @@
                 </div>
 
                 <!-- Video Card 4 -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card video-card shadow-lg h-100">
                         <div class="video-thumbnail">
                             <img src="assets/img/bg.jpg" class="card-img-top" alt="Video Thumbnail">
@@ -157,7 +152,7 @@
                                 <i class="bi bi-camera-video-fill text-danger me-2"></i>
                                 <span class="badge bg-danger">Hardware</span>
                             </div>
-                            <h5 class="mb-2">Computer Components</h5>
+                            <h5 class="mb-2 text-dark fw-bold">Computer Components</h5>
                             <p class="mb-3">Learn about CPU, RAM, and storage devices</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small><i class="bi bi-eye me-1"></i>1.5K views</small>
@@ -170,7 +165,7 @@
                 </div>
 
                 <!-- Video Card 5 -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card video-card shadow-lg h-100">
                         <div class="video-thumbnail">
                             <img src="assets/img/bg.jpg" class="card-img-top" alt="Video Thumbnail">
@@ -184,7 +179,7 @@
                                 <i class="bi bi-camera-video-fill text-danger me-2"></i>
                                 <span class="badge bg-danger">Software</span>
                             </div>
-                            <h5 class="mb-2">Operating Systems</h5>
+                            <h5 class="mb-2 text-dark fw-bold">Operating Systems</h5>
                             <p class="mb-3">Deep dive into Windows, Linux, and macOS</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small><i class="bi bi-eye me-1"></i>2.1K views</small>
@@ -197,7 +192,7 @@
                 </div>
 
                 <!-- Video Card 6 -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card video-card shadow-lg h-100">
                         <div class="video-thumbnail">
                             <img src="assets/img/bg.jpg" class="card-img-top" alt="Video Thumbnail">
@@ -211,7 +206,7 @@
                                 <i class="bi bi-camera-video-fill text-danger me-2"></i>
                                 <span class="badge bg-danger">Programming</span>
                             </div>
-                            <h5 class="mb-2">Web Development Basics</h5>
+                            <h5 class="mb-2 text-dark fw-bold">Web Development Basics</h5>
                             <p class="mb-3">HTML, CSS, and JavaScript for beginners</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small><i class="bi bi-eye me-1"></i>3.2K views</small>
@@ -224,7 +219,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
