@@ -1,34 +1,5 @@
 <?php include 'header.php'; ?>
 
-<?php
-require_once 'forms/config.php'; // database connection
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = trim($_POST['email']);
-
-    if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        try {
-            $stmt = $pdo->prepare("INSERT INTO waitlist (email) VALUES (?)");
-            $stmt->execute([$email]);
-
-            // Redirect to register page after success
-            header("Location: forms/register.php");
-            exit();
-        } catch (PDOException $e) {
-            if ($e->getCode() == 23000) { // duplicate email
-                echo "<script>alert('This email is already registered.');</script>";
-            } else {
-                echo "Database error: " . $e->getMessage();
-            }
-        }
-    } else {
-        echo "<script>alert('Please enter a valid email.');</script>";
-    }
-}
-?>
-
-
-
 <main class="main">
   <!-- Hero Section -->
   <section id="hero" class="hero section transparent-background">
@@ -47,20 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div><h3 class="count-seconds">0</h3><h4>Seconds</h4></div>
         </div>
 
-<!-- CTA -->
-<div class="col-lg-5 hero-newsletter mt-4">
-  <p>Get started with us today!</p>
-  <div class="newsletter-form">
-    <form method="POST">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <input type="submit" value="Register" class="btn btn-success mt-2" />
-    </form>
-  </div>
-
-  <!-- Login Button -->
-  <a href="forms/login.php" class="btn btn-primary mt-3">Login</a>
-</div>
-
+        <!-- CTA -->
+         <div class="col-lg-5 hero-newsletter mt-4">
+          <p>Get started with us today!</p>       
+        
+               <form action="check_email.php" method="POST" class="newsletter-form">
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <input type="submit" value="Register / Login" />
+        </form>
+         
+        </div> 
 
    
 
