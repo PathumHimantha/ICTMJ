@@ -3,23 +3,47 @@ session_start();
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
-    
+
+    // 🔑 Hardcoded Admin Credentials
+    $admin_email = "himantha6299@gmail.com";
+    $admin_password = "admin123"; // plain password
+
+    // Check if it's the admin
+    if ($email === $admin_email && $password === $admin_password) {
+        $_SESSION['user_id'] = 0; // or any fixed ID for admin
+        $_SESSION['username'] = "Admin";
+
+        echo "<script>
+            localStorage.setItem('user_id', '0');
+            localStorage.setItem('username', 'Admin');
+            window.location.href = '../admin/dashboard.php';
+        </script>";
+        exit();
+    }
+
+    // Otherwise, check normal users from DB
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
-    
+
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header("Location: dashboard.php"); // Create this page
+
+        echo "<script>
+            localStorage.setItem('user_id', '" . $user['id'] . "');
+            localStorage.setItem('username', '" . $user['username'] . "');
+            window.location.href = '../dashboard.php';
+        </script>";
         exit();
     } else {
         $error = "Invalid email or password!";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
