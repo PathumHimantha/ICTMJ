@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 30, 2025 at 04:56 PM
+-- Generation Time: Oct 04, 2025 at 12:42 PM
 -- Server version: 8.0.42
 -- PHP Version: 8.2.13
 
@@ -34,17 +34,42 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `phone` varchar(15) NOT NULL,
+  `district` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(1, 'Gothami Abewardana', 'monarawila98@gmail.com', '$2y$10$kjlx60fabJcVjzEYZDA/UOKquRlyjmtw/atTF42sdErvFzy7.wgIe', '2025-09-30 08:47:36');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `phone`, `district`) VALUES
+(1, 'Gothami Abewardana', 'monarawila98@gmail.com', '$2y$10$kjlx60fabJcVjzEYZDA/UOKquRlyjmtw/atTF42sdErvFzy7.wgIe', '2025-09-30 08:47:36', '', ''),
+(2, 'kusum rajapaksha', 'kusum@gmail.com', '$2y$10$Z4ScKXezUfxlxN1/T1NNieTqOtYc6x9N4BpDEkN46iVvXYM28NqwO', '2025-10-02 12:13:18', '0123489567', 'Ratnapura');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `waitlist`
+--
+
+DROP TABLE IF EXISTS `waitlist`;
+CREATE TABLE IF NOT EXISTS `waitlist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `waitlist`
+--
+
+INSERT INTO `waitlist` (`id`, `email`) VALUES
+(3, 'isurika@gmail.com'),
+(1, 'kusum@gmail.com');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
