@@ -62,7 +62,7 @@ session_start();
 
     <?php if ($_SESSION['user_id'] === 0): ?>
       <!-- Admin only -->
-      <li><a href="admin.php"><i class="bi bi-gear-fill me-1"></i>Settings</a></li>
+      <li><a href="settings.php"><i class="bi bi-gear-fill me-1"></i>Settings</a></li>
     <?php endif; ?>
 
   <?php else: ?>
