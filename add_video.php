@@ -1,12 +1,8 @@
 <?php
-session_start();
-require_once 'config.php';
 
-// Only allow admin
-if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'Admin') {
-    header('Location: ../index.php');
-    exit();
-}
+require_once 'forms/config.php';
+
+
 
 $error = '';
 $success = '';
@@ -33,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include 'header.php'; ?>
 
-<main class="container py-5" style="padding-top: 150px;">
+<main class="container py-5" style="position: relative; z-index: 1; padding-top: 150px;">
     <h2 class="text-center mb-4">Add New Video</h2>
 
     <?php if($error): ?>
