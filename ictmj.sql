@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2025 at 08:34 AM
+-- Generation Time: Oct 05, 2025 at 09:25 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -95,9 +95,19 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `phone
 CREATE TABLE `videos` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `category` varchar(100) NOT NULL,
+  `url` varchar(2556) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`id`, `title`, `category`, `url`, `created_at`, `year`) VALUES
+(1, 'TEST', 'O/L', 'https://youtu.be/Xrma7eq6QNQ', '2025-10-05 07:02:37', 2025),
+(2, 'TEST 2', 'A/L', 'https://youtu.be/CtFDbDDcT24', '2025-10-05 07:23:22', 2021);
 
 -- --------------------------------------------------------
 
@@ -174,7 +184,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `waitlist`
