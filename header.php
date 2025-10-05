@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,19 +41,37 @@
         </a>
 
         <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.php" class="active">Home</a></li>
-            <li class="dropdown">
-              <a href="#"><span>Resources</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul class="bg-black">
-                <li><a href="#tutes">Tutes</a></li>
-                <li><a href="pastpaper">Past Papers</a></li>
-                <li><a href="videopage">Videos</a></li>
-              </ul>
-            </li>
-            <li><a href="index.php#about">About</a></li>
-            <li><a href="index.php#contact">Contact</a></li>
-          </ul>
+<ul>
+  <li><a href="index.php" class="active">Home</a></li>
+  <li class="dropdown">
+    <a href="#"><span>Resources</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+    <ul class="bg-black">
+      <li><a href="#tutes">Tutes</a></li>
+      <li><a href="pastpaper.php">Past Papers</a></li>
+      <li><a href="videopage.php">Videos</a></li>
+    </ul>
+  </li>
+  <li><a href="index.php#about">About</a></li>
+  <li><a href="index.php#contact">Contact</a></li>
+
+  <?php if (isset($_SESSION['user_id'])): ?>
+    <!-- Show only if logged in -->
+    <li><a href="profile.php"><i class="bi bi-person-circle me-1"></i>Profile</a></li>
+<li><a href="forms/logout.php"><i class="bi bi-box-arrow-right me-1"></i>Logout</a></li>
+
+
+    <?php if ($_SESSION['user_id'] === 0): ?>
+      <!-- Admin only -->
+      <li><a href="settings.php"><i class="bi bi-gear-fill me-1"></i>Settings</a></li>
+    <?php endif; ?>
+
+  <?php else: ?>
+    <!-- Show only if NOT logged in -->
+    <li><a href="forms/login.php"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a></li>
+    <li><a href="forms/register.php"><i class="bi bi-person-plus me-1"></i>Register</a></li>
+  <?php endif; ?>
+</ul>
+
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
       </div>

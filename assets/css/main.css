@@ -21,27 +21,37 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #ffffff; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #ec0606; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #ffffff;
+  /* Background color for the entire website, including individual sections */
+  --default-color: #ffffff;
+  /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ffffff;
+  /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #ec0606;
+  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff;
+  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff;
+  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ); /* The default color of the main navmenu links */
-  --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ec0606; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: rgba(255,
+      255,
+      255,
+      0.5);
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #ffffff;
+  /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff;
+  /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff;
+  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #ffffff;
+  /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #ec0606;
+  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -219,12 +229,12 @@ h6 {
     position: relative;
   }
 
-  .navmenu > ul > li {
+  .navmenu>ul>li {
     white-space: nowrap;
     padding: 15px 14px;
   }
 
-  .navmenu > ul > li:last-child {
+  .navmenu>ul>li:last-child {
     padding-right: 0;
   }
 
@@ -251,7 +261,7 @@ h6 {
     transition: 0.3s;
   }
 
-  .navmenu > ul > li > a:before {
+  .navmenu>ul>li>a:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -265,13 +275,13 @@ h6 {
   }
 
   .navmenu a:hover:before,
-  .navmenu li:hover > a:before,
+  .navmenu li:hover>a:before,
   .navmenu .active:before {
     visibility: visible;
     width: 100%;
   }
 
-  .navmenu li:hover > a,
+  .navmenu li:hover>a,
   .navmenu .active,
   .navmenu .active:focus {
     color: var(--nav-hover-color);
@@ -310,11 +320,11 @@ h6 {
 
   .navmenu .dropdown ul a:hover,
   .navmenu .dropdown ul .active:hover,
-  .navmenu .dropdown ul li:hover > a {
+  .navmenu .dropdown ul li:hover>a {
     color: var(--nav-dropdown-hover-color);
   }
 
-  .navmenu .dropdown:hover > ul {
+  .navmenu .dropdown:hover>ul {
     opacity: 1;
     top: 100%;
     visibility: visible;
@@ -326,7 +336,7 @@ h6 {
     visibility: hidden;
   }
 
-  .navmenu .dropdown .dropdown:hover > ul {
+  .navmenu .dropdown .dropdown:hover>ul {
     opacity: 1;
     top: 0;
     left: -100%;
@@ -428,7 +438,7 @@ h6 {
     background-color: rgba(33, 37, 41, 0.1);
   }
 
-  .navmenu .dropdown > .dropdown-active {
+  .navmenu .dropdown>.dropdown-active {
     display: block;
     background-color: rgba(33, 37, 41, 0.03);
   }
@@ -455,7 +465,7 @@ h6 {
     transition: 0.3s;
   }
 
-  .mobile-nav-active .navmenu > ul {
+  .mobile-nav-active .navmenu>ul {
     display: block;
   }
 }
@@ -592,8 +602,7 @@ h6 {
 
 .page-title .heading {
   padding: 80px 0;
-  border-top: 1px solid
-    color-mix(in srgb, var(--default-color), transparent 90%);
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 .page-title .heading h1 {
@@ -615,11 +624,11 @@ h6 {
   font-weight: 600;
 }
 
-.page-title nav ol li + li {
+.page-title nav ol li+li {
   padding-left: 10px;
 }
 
-.page-title nav ol li + li::before {
+.page-title nav ol li+li::before {
   content: "/";
   display: inline-block;
   padding-right: 10px;
@@ -640,6 +649,7 @@ section,
 }
 
 @media (max-width: 1199px) {
+
   section,
   .section {
     scroll-margin-top: 66px;
@@ -941,51 +951,51 @@ section,
 /* Registration Form Styles */
 
 .log {
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    min-height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  min-height: 100vh;
 }
 
 .form-card {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid rgba(220, 53, 69, 0.5);
-    backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(220, 53, 69, 0.5);
+  backdrop-filter: blur(10px);
 }
 
 .form-control {
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(220, 53, 69, 0.5);
-    color: #ffffff;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(220, 53, 69, 0.5);
+  color: #ffffff;
 }
 
 .form-control:focus {
-    background: rgba(0, 0, 0, 0.8);
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
-    color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+  color: #ffffff;
 }
 
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%);
-    border: none;
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
-    transition: all 0.3s ease;
+  background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+  transition: all 0.3s ease;
 }
 
 .btn-danger:hover {
-    background: linear-gradient(135deg, #bb2d3b 0%, #8b1a24 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
+  background: linear-gradient(135deg, #bb2d3b 0%, #8b1a24 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
 }
 
 .text-danger-link {
-    color: #dc3545;
-    transition: color 0.3s ease;
+  color: #dc3545;
+  transition: color 0.3s ease;
 }
 
 .text-danger-link:hover {
-    color: #ff4d5a;
+  color: #ff4d5a;
 }

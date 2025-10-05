@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // 🔑 Hardcoded Admin Credentials
-    $admin_email = "himantha6299@gmail.com";
+    $admin_email = "admin@gmail.com";
     $admin_password = "admin123"; // plain password
 
     // Check if it's the admin
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>
             localStorage.setItem('user_id', '0');
             localStorage.setItem('username', 'Admin');
-            window.location.href = '../admin/dashboard.php';
+            window.location.href = '../admin.php';
         </script>";
         exit();
     }
