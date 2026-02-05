@@ -20,6 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
+        // Load student details for insert if needed
+        $studentStmt = $pdo->prepare("SELECT username, email, district FROM users WHERE id = :student_id");
+        $studentStmt->execute([':student_id' => $student_id]);
+        $student = $studentStmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$student) {
+            echo json_encode(['success' => false, 'message' => 'Student not found']);
+            exit;
+        }
+
         // Check if student has video access record
         $stmt = $pdo->prepare("SELECT video_id FROM video_access WHERE student_id = :student_id");
         $stmt->execute([':student_id' => $student_id]);
@@ -53,7 +63,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'videos' => $current_videos
             ]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Video access record not found for this student']);
+            $videos = json_encode([$video_id]);
+            $insert = $pdo->prepare("INSERT INTO video_access (student_id, name, email, district, video_id, accessed_at)
+                                     VALUES (:student_id, :name, :email, :district, :video_id, NOW())");
+            $insert->execute([
+                ':student_id' => $student_id,
+                ':name' => $student['username'],
+                ':email' => $student['email'],
+                ':district' => $student['district'],
+                ':video_id' => $videos
+            ]);
+
+            echo json_encode([
+                'success' => true,
+                'message' => 'Video access created',
+                'videos' => [$video_id]
+            ]);
         }
     } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);

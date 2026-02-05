@@ -15,22 +15,22 @@ require_once 'forms/config.php';
     <!-- Tabs -->
     <ul class="nav nav-tabs mb-4" id="settingsTabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="papers-tab" data-bs-toggle="tab" data-bs-target="#papers" type="button" role="tab" aria-controls="papers" aria-selected="true">
+            <button class="nav-link active text-danger" id="papers-tab" data-bs-toggle="tab" data-bs-target="#papers" type="button" role="tab" aria-controls="papers" aria-selected="true">
                 Manage Past Papers
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="videos-tab" data-bs-toggle="tab" data-bs-target="#videos" type="button" role="tab" aria-controls="videos" aria-selected="false">
+            <button class="nav-link text-danger" id="videos-tab" data-bs-toggle="tab" data-bs-target="#videos" type="button" role="tab" aria-controls="videos" aria-selected="false">
                 Manage Videos
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="subscriptions-tab" data-bs-toggle="tab" data-bs-target="#subscriptions" type="button" role="tab" aria-controls="subscriptions" aria-selected="false">
+            <button class="nav-link text-danger" id="subscriptions-tab" data-bs-toggle="tab" data-bs-target="#subscriptions" type="button" role="tab" aria-controls="subscriptions" aria-selected="false">
                 Manage Subscriptions
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab" aria-controls="students" aria-selected="false">
+            <button class="nav-link text-danger" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab" aria-controls="students" aria-selected="false">
                 Manage Students
             </button>
         </li>
@@ -187,6 +187,14 @@ require_once 'forms/config.php';
                     <tbody>
                         
                         <?php
+                        $videoStmt = $pdo->query("SELECT id, title FROM videos ORDER BY title ASC");
+                        $videosList = $videoStmt->fetchAll(PDO::FETCH_ASSOC);
+                        $videoTitleById = [];
+
+                        foreach ($videosList as $videoItem) {
+                            $videoTitleById[$videoItem['id']] = $videoItem['title'];
+                        }
+
                         $stmt = $pdo->query("SELECT u.id, u.username, u.email, u.district, 
                                              va.id as access_id, va.video_id, va.accessed_at 
                                              FROM users u 
@@ -204,8 +212,19 @@ require_once 'forms/config.php';
                                     $hasAccess = 'Yes';
                                     $videoIds = json_decode($student['video_id'], true);
                                     if (is_array($videoIds) && count($videoIds) > 0) {
-                                        $accessibleVideos = implode(', ', $videoIds);
+                                        $videoTitles = [];
+                                        foreach ($videoIds as $videoId) {
+                                            $videoTitles[] = $videoTitleById[$videoId] ?? $videoId;
+                                        }
+                                        $accessibleVideos = implode(', ', $videoTitles);
                                     }
+                                }
+
+                                $optionsHtml = "<option value=''>Select video</option>";
+                                foreach ($videosList as $videoItem) {
+                                    $videoId = $videoItem['id'];
+                                    $videoTitle = htmlspecialchars($videoItem['title'], ENT_QUOTES, 'UTF-8');
+                                    $optionsHtml .= "<option value='{$videoId}'>{$videoTitle}</option>";
                                 }
                                 
                                 echo "<tr>
@@ -213,7 +232,14 @@ require_once 'forms/config.php';
                                     <td>{$student['username']}</td>
                                     <td>{$student['email']}</td>
                                     <td>{$student['district']}</td>
-                                    <td>" . $hasAccess . "</td>
+                                    <td>
+                                        <div class='d-flex align-items-center gap-2'>
+                                            <select class='form-select form-select-sm video-select bg-transparent text-white border-secondary' data-student-id='{$student['id']}'>
+                                                {$optionsHtml}
+                                            </select>
+                                            <button type='button' class='btn btn-sm btn-danger grant-video-btn' data-student-id='{$student['id']}'>Grant</button>
+                                        </div>
+                                    </td>
                                     <td>" . $accessibleVideos . "</td>
                                 </tr>";
                             }
@@ -229,5 +255,49 @@ require_once 'forms/config.php';
     </div>
 
 </main>
+
+<script>
+document.addEventListener('click', function (event) {
+    const target = event.target;
+    if (!target.classList.contains('grant-video-btn')) {
+        return;
+    }
+
+    const studentId = target.getAttribute('data-student-id');
+    const row = target.closest('tr');
+    const select = row ? row.querySelector('.video-select') : null;
+    const videoId = select ? select.value : '';
+
+    if (!studentId || !videoId) {
+        alert('Please select a video to grant access.');
+        return;
+    }
+
+    const body = new URLSearchParams({
+        student_id: studentId,
+        video_id: videoId
+    });
+
+    fetch('save_video_access.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: body.toString()
+    })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            if (data && data.success) {
+                alert('Video access granted.');
+                window.location.reload();
+            } else {
+                alert((data && data.message) ? data.message : 'Failed to grant access.');
+            }
+        })
+        .catch(function () {
+            alert('Request failed. Please try again.');
+        });
+});
+</script>
 
 <?php include 'footer.php'; ?>

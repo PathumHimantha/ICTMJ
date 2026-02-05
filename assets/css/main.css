@@ -1002,3 +1002,8 @@ section,
 .bg-trns{
   background-color: #f0f8ff30;
 }
+
+.video-select option {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+}

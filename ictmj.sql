@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 09, 2025 at 07:05 AM
--- Server version: 8.0.42
+-- Generation Time: Feb 04, 2026 at 02:37 AM
+-- Server version: 8.0.44
 -- PHP Version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `year` year NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `videos`
@@ -121,7 +121,8 @@ CREATE TABLE IF NOT EXISTS `videos` (
 
 INSERT INTO `videos` (`id`, `title`, `category`, `url`, `created_at`, `year`) VALUES
 (1, 'TEST', 'O/L', 'https://youtu.be/Xrma7eq6QNQ', '2025-10-05 07:02:37', '2025'),
-(2, 'TEST 2', 'A/L', 'https://youtu.be/CtFDbDDcT24', '2025-10-05 07:23:22', '2021');
+(2, 'TEST 2', 'A/L', 'https://youtu.be/CtFDbDDcT24', '2025-10-05 07:23:22', '2021'),
+(3, 'english', 'O/L', 'https://www.youtube.com/watch?v=njw3t5KXbZk', '2026-02-03 15:51:54', '2015');
 
 -- --------------------------------------------------------
 
@@ -141,14 +142,6 @@ CREATE TABLE IF NOT EXISTS `video_access` (
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `video_access`
---
-
-INSERT INTO `video_access` (`id`, `student_id`, `name`, `email`, `district`, `video_id`, `accessed_at`) VALUES
-(1, 3, 'madu', 'maduka@gmail.com', '', '[\"video10\",\"video14\",\"video5\"]', '2025-10-09 05:41:51'),
-(2, 4, 'Gothami Abewardana', 'maduabewardana98@gmail.com', 'Ratnapura', '[\"video10\",\"video1\",\"video15\",\"video4\",\"video12\",\"video6\"]', '2025-10-09 05:42:05');
 
 -- --------------------------------------------------------
 
