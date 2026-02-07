@@ -233,13 +233,13 @@ require_once 'forms/config.php';
                                     <td>{$student['email']}</td>
                                     <td>{$student['district']}</td>
                                     <td>
-                                        <div class='d-flex align-items-center gap-2'>
-                                            <select class='form-select form-select-sm video-select bg-transparent text-white border-secondary' data-student-id='{$student['id']}'>
-                                                {$optionsHtml}
-                                            </select>
-                                            <button type='button' class='btn btn-sm btn-danger grant-video-btn' data-student-id='{$student['id']}'>Grant</button>
-                                        </div>
-                                    </td>
+                                    <div class='d-flex align-items-center gap-2'>
+                                        <select class='form-select form-select-sm video-select bg-transparent text-white border-secondary' data-student-id='{$student['id']}'>
+                                            {$optionsHtml}
+                                        </select>
+                                        <button type='button' class='btn btn-sm btn-danger grant-video-btn' data-student-id='{$student['id']}'>Grant</button>
+                                    </div>
+                                </td>
                                     <td>" . $accessibleVideos . "</td>
                                 </tr>";
                             }
