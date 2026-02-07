@@ -195,26 +195,29 @@ require_once 'forms/config.php';
                             $videoTitleById[$videoItem['id']] = $videoItem['title'];
                         }
 
-                        $stmt = $pdo->query("SELECT u.id, u.username, u.email, u.district, 
-                                             va.id as access_id, va.video_id, va.accessed_at 
-                                             FROM users u 
-                                             LEFT JOIN video_access va ON u.id = va.student_id 
-                                             ORDER BY u.id DESC");
+                        // Get all students
+                        $stmt = $pdo->query("SELECT id, username, email, district FROM users ORDER BY id DESC");
                         $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($students) {
                             foreach ($students as $student) {
+                                // Get video access for this student
+                                $accessStmt = $pdo->prepare("SELECT id, video_id FROM video_access WHERE student_id = :student_id");
+                                $accessStmt->bindParam(':student_id', $student['id'], PDO::PARAM_INT);
+                                $accessStmt->execute();
+                                $access = $accessStmt->fetch(PDO::FETCH_ASSOC);
+                                
                                 // Decode video_id JSON if exists
                                 $accessibleVideos = 'None';
-                                $hasAccess = 'No';
+                                $accessId = null;
                                 
-                                if ($student['access_id'] && $student['video_id']) {
-                                    $hasAccess = 'Yes';
-                                    $videoIds = json_decode($student['video_id'], true);
+                                if ($access && $access['video_id']) {
+                                    $accessId = $access['id'];
+                                    $videoIds = json_decode($access['video_id'], true);
                                     if (is_array($videoIds) && count($videoIds) > 0) {
                                         $videoTitles = [];
                                         foreach ($videoIds as $videoId) {
-                                            $videoTitles[] = $videoTitleById[$videoId] ?? $videoId;
+                                            $videoTitles[] = $videoTitleById[$videoId] ?? "Video #$videoId";
                                         }
                                         $accessibleVideos = implode(', ', $videoTitles);
                                     }
@@ -229,9 +232,9 @@ require_once 'forms/config.php';
                                 
                                 echo "<tr>
                                     <td>{$student['id']}</td>
-                                    <td>{$student['username']}</td>
-                                    <td>{$student['email']}</td>
-                                    <td>{$student['district']}</td>
+                                    <td>" . htmlspecialchars($student['username']) . "</td>
+                                    <td>" . htmlspecialchars($student['email']) . "</td>
+                                    <td>" . htmlspecialchars($student['district']) . "</td>
                                     <td>
                                     <div class='d-flex align-items-center gap-2'>
                                         <select class='form-select form-select-sm video-select bg-transparent text-white border-secondary' data-student-id='{$student['id']}'>
@@ -240,7 +243,10 @@ require_once 'forms/config.php';
                                         <button type='button' class='btn btn-sm btn-danger grant-video-btn' data-student-id='{$student['id']}'>Grant</button>
                                     </div>
                                 </td>
-                                    <td>" . $accessibleVideos . "</td>
+                                    <td>
+                                        <span>" . $accessibleVideos . "</span>
+                                        " . ($accessId ? "<button type='button' class='btn btn-sm btn-danger ms-2 delete-access-btn' data-access-id='{$accessId}' onclick='return confirm(\"Are you sure you want to remove all video access for this student?\")'>Delete Access</button>" : "") . "
+                                    </td>
                                 </tr>";
                             }
                         } else {
@@ -259,44 +265,78 @@ require_once 'forms/config.php';
 <script>
 document.addEventListener('click', function (event) {
     const target = event.target;
-    if (!target.classList.contains('grant-video-btn')) {
-        return;
-    }
+    
+    // Handle grant video access
+    if (target.classList.contains('grant-video-btn')) {
+        const studentId = target.getAttribute('data-student-id');
+        const row = target.closest('tr');
+        const select = row ? row.querySelector('.video-select') : null;
+        const videoId = select ? select.value : '';
 
-    const studentId = target.getAttribute('data-student-id');
-    const row = target.closest('tr');
-    const select = row ? row.querySelector('.video-select') : null;
-    const videoId = select ? select.value : '';
+        if (!studentId || !videoId) {
+            alert('Please select a video to grant access.');
+            return;
+        }
 
-    if (!studentId || !videoId) {
-        alert('Please select a video to grant access.');
-        return;
-    }
-
-    const body = new URLSearchParams({
-        student_id: studentId,
-        video_id: videoId
-    });
-
-    fetch('save_video_access.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: body.toString()
-    })
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-            if (data && data.success) {
-                alert('Video access granted.');
-                window.location.reload();
-            } else {
-                alert((data && data.message) ? data.message : 'Failed to grant access.');
-            }
-        })
-        .catch(function () {
-            alert('Request failed. Please try again.');
+        const body = new URLSearchParams({
+            student_id: studentId,
+            video_id: videoId
         });
+
+        fetch('save_video_access.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body.toString()
+        })
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                if (data && data.success) {
+                    alert('Video access granted.');
+                    window.location.reload();
+                } else {
+                    alert((data && data.message) ? data.message : 'Failed to grant access.');
+                }
+            })
+            .catch(function () {
+                alert('Request failed. Please try again.');
+            });
+    }
+    
+    // Handle delete video access
+    if (target.classList.contains('delete-access-btn')) {
+        const accessId = target.getAttribute('data-access-id');
+
+        if (!accessId) {
+            alert('Access ID not found.');
+            return;
+        }
+
+        const body = new URLSearchParams({
+            access_id: accessId
+        });
+
+        fetch('delete_video_access.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body.toString()
+        })
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                if (data && data.success) {
+                    alert('Video access removed successfully.');
+                    window.location.reload();
+                } else {
+                    alert((data && data.message) ? data.message : 'Failed to remove access.');
+                }
+            })
+            .catch(function () {
+                alert('Request failed. Please try again.');
+            });
+    }
 });
 </script>
 
