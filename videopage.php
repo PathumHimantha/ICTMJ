@@ -1,18 +1,6 @@
 
 <?php include 'header.php'; ?>
 <?php
-// If session is empty but we have cookie data, populate session
-if ((!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) && isset($_COOKIE['user_id'])) {
-    $_SESSION['user_id'] = $_COOKIE['user_id'];
-    error_log("Session populated from cookie - user_id: " . $_COOKIE['user_id']);
-}
-
-if ((!isset($_SESSION['username']) || empty($_SESSION['username'])) && isset($_COOKIE['username'])) {
-    $_SESSION['username'] = $_COOKIE['username'];
-    error_log("Session populated from cookie - username: " . $_COOKIE['username']);
-}
-
-
 $is_admin = false;
 
 // Convert to int for proper comparison (user_id could be string "0")
